@@ -1,7 +1,6 @@
 {
-  "name": "template",
+  "name": "wild_shapes_deck",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "test",
@@ -28,5 +27,14 @@
     "babel-cli": "^6.26.0",
     "babel-loader": "^8.2.2",
     "webpack-cli": "^4.7.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MelanieBrooke/wild_shapes_deck.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MelanieBrooke/wild_shapes_deck/issues"
+  },
+  "homepage": "https://github.com/MelanieBrooke/wild_shapes_deck#readme",
+  "description": ""
 }

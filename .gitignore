@@ -1,0 +1,4 @@
+public/app.js
+*.env
+*.pem
+node_modules

@@ -16,7 +16,32 @@ const getDruidLevel = (characterName, cb) => {
   });
 };
 
+const getWildShapes = (cb) => {
+  var queryString = 'SELECT * FROM wildshapes';
+  connection.query(queryString, function(err, result) {
+    if (err) {
+      cb(err);
+    } else {
+      cb(null, result);
+    }
+  });
+}
+
+const seenBeast = (beast, cb) => {
+  var queryString = 'UPDATE wildshapes SET seen = true WHERE animal = (?)';
+  var queryArgs = [beast];
+  connection.query(queryString, queryArgs, function(err, result) {
+    if (err) {
+      cb(err);
+    } else {
+      cb(null, result);
+    }
+  })
+}
+
 module.exports = {
-  getDruidLevel
+  getDruidLevel,
+  getWildShapes,
+  seenBeast
 };
 

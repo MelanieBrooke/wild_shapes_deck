@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import ShapesSeen from './ShapesSeen.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -8,7 +9,11 @@ class App extends React.Component {
       // hardcoded for personal use
       characterName: 'Enoki',
       druidLevel: null,
-      beasts: []
+      beasts: {
+        available: ['bat', 'cat', 'dog'],
+        seen: ['tiger', 'hawk'],
+        unseen: []
+      }
     }
   };
 
@@ -39,12 +44,17 @@ class App extends React.Component {
 
   formatBeastData() {
     // format beast data and add to state
+
   }
 
   render() {
     return(
       <div>
         Hello World
+        <ShapesSeen
+        availableShapes={this.state.beasts.available}
+        seenShapes={this.state.beasts.seen}
+        />
       </div>
     );
   }

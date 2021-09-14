@@ -1,7 +1,8 @@
 import React from 'react';
 import ShapeAvailable from './ShapeAvailable.jsx';
+import ShapeSeen from './ShapeSeen.jsx';
 
-const ShapesSeen = () => {
+const ShapesSeen = (props) => {
   // show names only, click on names to see stats
   return(
     <div>
@@ -9,19 +10,12 @@ const ShapesSeen = () => {
       <ul>{props.availableShapes.map(shape =>
         <ShapeAvailable shape={shape} />
       )}</ul>
+      <h2>Seen Shapes</h2>
+      <ul>{props.seenShapes.map(shape =>
+        <ShapeSeen shape={shape} />
+      )}</ul>
     </div>
   )
 }
 
-
-// const Hand = (props) => {
-//   return (
-//     <div className={style.development}>
-//       <h3>Development Cards: {props.cards.length}</h3>
-//       {/* {props.cards} */}
-//       <ul>{props.cards.map(card =>
-//         <DisplayHand card={card} discard={props.discard}/>
-//       )}</ul>
-//     </div>
-//   );
-// }
+export default ShapesSeen;

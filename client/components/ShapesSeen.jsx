@@ -1,5 +1,5 @@
 import React from 'react';
-import ShapeAvailable from './ShapeAvailable.jsx';
+// import ShapeAvailable from './ShapeAvailable.jsx';
 import ShapeSeen from './ShapeSeen.jsx';
 
 const ShapesSeen = (props) => {
@@ -8,7 +8,7 @@ const ShapesSeen = (props) => {
     <div>
       <h2>Available Shapes</h2>
       <ul>{props.availableShapes.map(shape =>
-        <ShapeAvailable shape={shape} />
+        <ShapeSeen shape={shape} />
       )}</ul>
       <h2>Seen Shapes</h2>
       <ul>{props.seenShapes.map(shape =>

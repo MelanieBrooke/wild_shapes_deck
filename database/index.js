@@ -17,7 +17,7 @@ const getDruidLevel = (characterName, cb) => {
 };
 
 const getWildShapes = (cb) => {
-  var queryString = 'SELECT * FROM wildshapes';
+  var queryString = 'SELECT * FROM shapes';
   connection.query(queryString, function(err, result) {
     if (err) {
       cb(err);
@@ -28,7 +28,7 @@ const getWildShapes = (cb) => {
 }
 
 const seenBeast = (beast, cb) => {
-  var queryString = 'UPDATE wildshapes SET seen = true WHERE animal = (?)';
+  var queryString = 'UPDATE shapes SET seen = true WHERE animal = (?)';
   var queryArgs = [beast];
   connection.query(queryString, queryArgs, function(err, result) {
     if (err) {

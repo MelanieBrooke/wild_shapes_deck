@@ -10,8 +10,8 @@ class App extends React.Component {
       characterName: 'Enoki',
       druidLevel: null,
       beasts: {
-        available: ['bat', 'cat', 'dog'],
-        seen: ['tiger', 'hawk'],
+        available: [],
+        seen: [],
         unseen: []
       }
     }
@@ -28,6 +28,7 @@ class App extends React.Component {
         this.setState({
           druidLevel: data[0].druidLevel
         });
+        this.getShapes();
       }
     });
   }
@@ -42,9 +43,50 @@ class App extends React.Component {
     });
   }
 
-  formatBeastData() {
-    // format beast data and add to state
+  getShapes() {
+    $.ajax({
+      url: 'http://localhost:2021/shapes',
+      success: (data) => {
+        console.log(data);
+        for (var i = 0; i < data.length; i++) {
+          this.sortBeastData(data[i]);
+        }
+        console.log(this.state.beasts)
+        this.setState({
+          beasts: this.state.beasts
+        });
+      }
+    })
+  }
 
+
+  sortBeastData(beastObject) {
+    // sort beast data and add to state
+    if (!beastObject.seen) {
+      this.state.beasts.unseen.push(beastObject);
+      return;
+    }
+    if (this.state.druidLevel < 2) {
+      if (!beastObject.flyingSpeed && !beastObject.swimmingSpeed && beastObject.challengeRating <= 0.25) {
+        this.state.beasts.available.push(beastObject);
+      } else {
+        this.state.beasts.seen.push(beastObject);
+      }
+    } else if (this.state.druidLevel < 4) {
+      if (!beastObject.flyingSpeed && beastObject.challengeRating <= 0.5) {
+        this.state.beasts.available.push(beastObject);
+      } else {
+        this.state.beasts.seen.push(beastObject);
+      }
+    } else if (this.state.druidLevel < 8) {
+      if (!beastObject.challengeRating <= 1.0) {
+        this.state.beasts.available.push(beastObject);
+      } else {
+        this.state.beasts.seen.push(beastObject);
+      }
+    } else {
+      this.state.beasts.seen.push(beastObject);
+    }
   }
 
   render() {

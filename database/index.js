@@ -39,6 +39,8 @@ const seenBeast = (beast, cb) => {
   })
 }
 
+
+
 module.exports = {
   getDruidLevel,
   getWildShapes,

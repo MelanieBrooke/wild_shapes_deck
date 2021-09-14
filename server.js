@@ -28,7 +28,13 @@ app.get('/user', (req, res) => {
 })
 
 app.get('/shapes', (req, res) => {
-  // get current shape data
+  dbindex.getWildShapes((err, result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  })
 })
 
 app.post('/shapes', (req, res) => {
@@ -36,5 +42,12 @@ app.post('/shapes', (req, res) => {
 })
 
 app.patch('/shapes', (req, res) => {
-  // update a beast that the druid has seen
+  console.log(req.body)
+  // dbindex.seenBeast('bat', (err, result) => {
+  //   if (err) {
+  //     res.send(err);
+  //   } else {
+  //     res.send(result);
+  //   }
+  // })
 })

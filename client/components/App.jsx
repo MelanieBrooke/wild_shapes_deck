@@ -7,7 +7,8 @@ class App extends React.Component {
     this.state = {
       // hardcoded for personal use
       characterName: 'Enoki',
-      druidLevel: null
+      druidLevel: null,
+      beasts: []
     }
   };
 
@@ -23,7 +24,21 @@ class App extends React.Component {
           druidLevel: data[0].druidLevel
         });
       }
-    })
+    });
+  }
+
+  seenBeast(beast) {
+    $.ajax({
+      type: 'PATCH',
+      url: 'http://localhost:2021/shapes',
+      success: (data) => {
+        console.log(data);
+      }
+    });
+  }
+
+  formatBeastData() {
+    // format beast data and add to state
   }
 
   render() {
@@ -38,3 +53,8 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+// sort beasts by seen: available, seen: not available, and not seen
+// don't show not seen beasts, have an input or search bar to find and add a beast from the database
+// if that beast isn't found, then have option to input a new beast to the database

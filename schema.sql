@@ -5,9 +5,10 @@ CREATE DATABASE wildshapes;
 USE wildshapes;
 
 CREATE TABLE user (
-  id INT NOT NULL AUTO_INCREMENT,
+  userid INT NOT NULL AUTO_INCREMENT,
   characterName VARCHAR(30),
-  druidLevel TINYINT
+  druidLevel TINYINT,
+  PRIMARY KEY (userid)
 );
 
 CREATE TABLE shapes (
@@ -15,7 +16,7 @@ CREATE TABLE shapes (
   animal VARCHAR(30) NOT NULL,
   seen BOOLEAN DEFAULT false,
   challengeRating FLOAT,
-  size ENUM('tiny', 'medium', 'large')
+  size ENUM('tiny', 'medium', 'large'),
   armorClass TINYINT,
   hitPoints TINYINT,
   speed TINYINT,
@@ -35,7 +36,7 @@ CREATE TABLE shapes (
   ability3 VARCHAR(512),
   action1 VARCHAR(512),
   action2 VARCHAR(512),
-  action3 VARCHAR(512)
+  action3 VARCHAR(512),
   PRIMARY KEY (id)
 );
 

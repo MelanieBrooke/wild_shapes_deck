@@ -36,6 +36,7 @@ class App extends React.Component {
   }
 
   seenBeast(beast) {
+    // shift 'seen' to true
     $.ajax({
       type: 'PATCH',
       url: 'http://localhost:2021/shapes',

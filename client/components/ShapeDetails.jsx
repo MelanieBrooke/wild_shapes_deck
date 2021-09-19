@@ -15,7 +15,6 @@ const ShapeDetails = (props) => {
   //// Use the above for reference only ////
 
   const FormatAbilities = (props) => {
-    console.log('props', props)
     return (<li>
       <b>{props.ability[0]}</b>
       {props.ability[1]}
@@ -23,7 +22,6 @@ const ShapeDetails = (props) => {
   }
 
   const FormatActions = (props) => {
-    console.log('props', props)
     return (<li>
       <b>{props.action[0]}</b>
       <i>{props.action[1]}</i>

@@ -6,14 +6,14 @@ import $ from 'jquery';
 
 const UnseenBeast = (props) => {
   var seenClick = () => {
-    props.seenBeast(props.beastName);
-    alert(props.beastName + ' added to your shapes!');
+    props.seenBeast(props.beast.animal);
+    alert(props.beast.animal + ' added to your shapes!');
   }
 
   return (
-    <div>
-      <td>{props.beastName}</td>
-      <td><button onClick={seenClick}>Seen</button></td>
-    </div>
+      <li>{props.beast.animal}
+      <button onClick={seenClick}>Seen</button></li>
   )
 }
+
+export default UnseenBeast;

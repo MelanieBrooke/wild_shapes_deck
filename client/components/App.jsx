@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import ShapesSeen from './ShapesSeen.jsx';
+import UnseenBeasts from './UnseenBeasts.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class App extends React.Component {
         unseen: []
       }
     }
+    this.seenBeast = this.seenBeast.bind(this);
   };
 
   componentDidMount() {
@@ -78,20 +80,20 @@ class App extends React.Component {
       this.state.beasts.unseen.push(beastObject);
       return;
     }
-    if (this.state.druidLevel < 2) {
-      if (!beastObject.flyingSpeed && !beastObject.swimmingSpeed && beastObject.challengeRating <= 0.25) {
-        this.state.beasts.available.push(beastObject);
-      } else {
-        this.state.beasts.seen.push(beastObject);
-      }
-    } else if (this.state.druidLevel < 4) {
-      if (!beastObject.flyingSpeed && beastObject.challengeRating <= 0.5) {
+    if (this.state.druidLevel >= 2 && this.state.druidLevel < 4) {
+      if (!beastObject.flySpeed && !beastObject.swimSpeed && beastObject.challengeRating <= 0.25) {
         this.state.beasts.available.push(beastObject);
       } else {
         this.state.beasts.seen.push(beastObject);
       }
     } else if (this.state.druidLevel < 8) {
-      if (!beastObject.challengeRating <= 1.0) {
+      if (!beastObject.flySpeed && beastObject.challengeRating <= 0.5) {
+        this.state.beasts.available.push(beastObject);
+      } else {
+        this.state.beasts.seen.push(beastObject);
+      }
+    } else if (this.state.druidLevel >= 8) {
+      if (beastObject.challengeRating <= 1.0) {
         this.state.beasts.available.push(beastObject);
       } else {
         this.state.beasts.seen.push(beastObject);
@@ -108,6 +110,10 @@ class App extends React.Component {
         <ShapesSeen
         availableShapes={this.state.beasts.available}
         seenShapes={this.state.beasts.seen}
+        />
+        <UnseenBeasts
+          beasts={this.state.beasts.unseen}
+          seenBeast={this.seenBeast}
         />
       </div>
     );

@@ -47,16 +47,29 @@ class App extends React.Component {
     $.ajax({
       url: 'http://localhost:2021/shapes',
       success: (data) => {
-        console.log(data);
         for (var i = 0; i < data.length; i++) {
+          this.sortAbilitiesAndActions(data[i]);
+
           this.sortBeastData(data[i]);
         }
-        console.log(this.state.beasts)
+        // console.log(this.state.beasts)
         this.setState({
           beasts: this.state.beasts
         });
+        // console.log('this.state after getShapes(): ', this.state);
       }
-    })
+    });
+  }
+
+  sortAbilitiesAndActions(beastObject) {
+    beastObject.abilities = beastObject.abilities.split('&');
+    beastObject.actions = beastObject.actions.split('&');
+    for (var j = 0; j < beastObject.abilities.length; j++) {
+      beastObject.abilities[j] = beastObject.abilities[j].split('?');
+    }
+    for (var k = 0; k < beastObject.actions.length; k++) {
+      beastObject.actions[k] = beastObject.actions[k].split('?');
+    }
   }
 
 

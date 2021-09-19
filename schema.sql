@@ -31,12 +31,8 @@ CREATE TABLE shapes (
   charisma TINYINT,
   skills VARCHAR(255),
   senses VARCHAR(255),
-  ability1 VARCHAR(512),
-  ability2 VARCHAR(512),
-  ability3 VARCHAR(512),
-  action1 VARCHAR(512),
-  action2 VARCHAR(512),
-  action3 VARCHAR(512),
+  abilities VARCHAR(1024),
+  actions VARCHAR(1024),
   PRIMARY KEY (id)
 );
 
@@ -57,6 +53,6 @@ CREATE TABLE shapes (
 
 INSERT into user (characterName, druidLevel) VALUES ('Enoki', 5);
 
--- For formatting on the client side, the ? breaks bold from italics from regular, and the & indicates line break.
+-- For formatting on the client side, the ? is to separate formatting, and the & to separarate different abilities and actions
 
-INSERT into shapes (animal, seen, challengeRating, size, armorClass, hitPoints, speed, flySpeed, strength, dexterity, constitution, intelligence, wisdom, charisma, senses, ability1, ability2, action1) VALUES ('Bat', true, 0.0, 'tiny', 12, 1, 5, 30, 2, 15, 8, 2, 12, 4, 'blindsight 60 ft., passive Perception 11', 'Echolocation: ?While it can''t hear, the bat has no blindsight.', 'Keen Hearing: ?The bat has advantage on Wisdom (Perception) checks that rely on hearing.', 'Bite: ?Melee Weapon Attack: ?+0 to hit, reach 5 ft., one creature.?Hit: ?1 piercing damage.')
+INSERT into shapes (animal, seen, challengeRating, size, armorClass, hitPoints, speed, flySpeed, strength, dexterity, constitution, intelligence, wisdom, charisma, senses, abilities, actions) VALUES ('Bat', true, 0.0, 'tiny', 12, 1, 5, 30, 2, 15, 8, 2, 12, 4, 'blindsight 60 ft., passive Perception 11', 'Echolocation: ?While it can''t hear, the bat has no blindsight.&Keen Hearing: ?The bat has advantage on Wisdom (Perception) checks that rely on hearing.', 'Bite: ?Melee Weapon Attack: ?+0 to hit, reach 5 ft., one creature.?Hit: ?1 piercing damage.')

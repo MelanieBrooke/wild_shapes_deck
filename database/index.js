@@ -39,6 +39,18 @@ const seenBeast = (beast, cb) => {
   })
 }
 
+const undoSeenBeast = (beast, cb) => {
+  var queryString = 'UPDATE shapes SET seen = false WHERE animal = (?)';
+  var queryArgs = [beast];
+  connection.query(queryString, queryArgs, function(err, result) {
+    if (err) {
+      cb(err);
+    } else {
+      cb(null, result);
+    }
+  })
+}
+
 
 
 module.exports = {

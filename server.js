@@ -43,11 +43,22 @@ app.post('/shapes', (req, res) => {
 
 app.patch('/shapes', (req, res) => {
   console.log(req.body)
-  // dbindex.seenBeast('bat', (err, result) => {
-  //   if (err) {
-  //     res.send(err);
-  //   } else {
-  //     res.send(result);
-  //   }
-  // })
+  dbindex.seenBeast(req.body.beast, (err, result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
+
+app.patch('/undo', (req, res) => {
+  console.log(req.body)
+  dbindex.undoSeenBeast(req.body.beast, (err, result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  })
 })

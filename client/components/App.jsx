@@ -45,6 +45,18 @@ class App extends React.Component {
     $.ajax({
       type: 'PATCH',
       url: 'http://localhost:2021/shapes',
+      data: {beast:beast},
+      success: (data) => {
+        console.log(data);
+      }
+    });
+  }
+
+  undoSeenBeast(beast) {
+    $.ajax({
+      type: 'PATCH',
+      url: 'http://localhost:2021/undo',
+      data: {beast:beast},
       success: (data) => {
         console.log(data);
       }

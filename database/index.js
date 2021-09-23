@@ -56,6 +56,7 @@ const undoSeenBeast = (beast, cb) => {
 module.exports = {
   getDruidLevel,
   getWildShapes,
-  seenBeast
+  seenBeast,
+  undoSeenBeast
 };
 

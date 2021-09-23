@@ -3,6 +3,7 @@ import $ from 'jquery';
 import ShapesSeen from './ShapesSeen.jsx';
 import UnseenBeasts from './UnseenBeasts.jsx';
 import Popup from './Popup.jsx';
+import UndoSeen from './UndoSeen.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class App extends React.Component {
     this.seenBeast = this.seenBeast.bind(this);
     this.popupOpen = this.popupOpen.bind(this);
     this.popupClose = this.popupClose.bind(this);
+    this.undoSeenBeast = this.undoSeenBeast.bind(this);
   };
 
   componentDidMount() {
@@ -47,23 +49,31 @@ class App extends React.Component {
       url: 'http://localhost:2021/shapes',
       data: {beast:beast},
       success: (data) => {
-        console.log(data);
+        this.getShapes();
       }
     });
   }
 
-  undoSeenBeast(beast) {
+  undoSeenBeast(e) {
+    var beast = e.target.innerHTML;
     $.ajax({
       type: 'PATCH',
       url: 'http://localhost:2021/undo',
       data: {beast:beast},
       success: (data) => {
-        console.log(data);
+        this.getShapes();
       }
     });
   }
 
   getShapes() {
+    this.setState({
+      beasts: {
+        available: [],
+        seen: [],
+        unseen: []
+      },
+    });
     $.ajax({
       url: 'http://localhost:2021/shapes',
       success: (data) => {
@@ -75,7 +85,6 @@ class App extends React.Component {
         this.setState({
           beasts: this.state.beasts
         });
-
       }
     });
   }
@@ -96,7 +105,6 @@ class App extends React.Component {
       popup: true,
       currentBeast: beast
     });
-    // console.log(beast);
   }
 
   popupClose(e) {
@@ -165,6 +173,10 @@ class App extends React.Component {
           popup={this.state.popup}
           popupClose={this.popupClose}
           shape={this.state.currentBeast}
+        />
+        <UndoSeen
+          beasts={this.state.beasts.available.concat(this.state.beasts.seen)}
+          undoSeenBeast={this.undoSeenBeast}
         />
       </div>
     );

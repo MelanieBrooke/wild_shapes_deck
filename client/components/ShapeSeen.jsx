@@ -4,8 +4,10 @@ import ShapeDetails from './ShapeDetails.jsx';
 const ShapeSeen = (props) => {
 
   return (<div>
-    {/* <li>{props.shape.animal}</li> */}
-    {<li> <ShapeDetails shape={props.shape} /></li>}
+    <li
+      onClick={props.popupOpen}>{props.shape.animal}</li>
+    {/* <button onClick={props.popupOpen}></button> */}
+    {/* {<li> <ShapeDetails shape={props.shape} /></li>} */}
   </div>)
 };
 

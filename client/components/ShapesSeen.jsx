@@ -8,11 +8,19 @@ const ShapesSeen = (props) => {
     <div>
       <h2>Available Shapes</h2>
       <ul>{props.availableShapes.map(shape =>
-        <ShapeSeen shape={shape} />
+        <ShapeSeen
+          shape={shape}
+          popupOpen={props.popupOpen}
+          popupClose={props.popupClose}
+        />
       )}</ul>
       <h2>Seen Shapes</h2>
       <ul>{props.seenShapes.map(shape =>
-        <ShapeSeen shape={shape} />
+        <ShapeSeen
+          shape={shape}
+          popupOpen={props.popupOpen}
+          popupClose={props.popupClose}
+        />
       )}</ul>
     </div>
   )

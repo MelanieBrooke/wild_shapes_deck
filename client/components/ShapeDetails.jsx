@@ -45,6 +45,7 @@ const ShapeDetails = (props) => {
 
   return(
     <div>
+      <br></br>
       <h3>{props.shape.animal}</h3>
       <i>{props.shape.size} beast</i><br></br><hr></hr>
       <b>Armor Class</b> {props.shape.armorClass}<br></br>

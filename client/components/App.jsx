@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import ShapesSeen from './ShapesSeen.jsx';
 import UnseenBeasts from './UnseenBeasts.jsx';
+import Popup from './Popup.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,9 +15,13 @@ class App extends React.Component {
         available: [],
         seen: [],
         unseen: []
-      }
+      },
+      popup: false,
+      currentShape: null
     }
     this.seenBeast = this.seenBeast.bind(this);
+    this.popupOpen = this.popupOpen.bind(this);
+    this.popupClose = this.popupClose.bind(this);
   };
 
   componentDidMount() {
@@ -60,6 +65,32 @@ class App extends React.Component {
         });
 
       }
+    });
+  }
+
+  findBeast(beast) {
+    console.log(beast);
+    if (this.state.beasts.available.find( x => {return x.animal === beast})) {
+      return this.state.beasts.available.find( x => {return x.animal === beast});
+    } else {
+      return this.state.beasts.seen.find( x => {return x.animal === beast})
+    }
+  }
+
+  popupOpen(e) {
+    e.preventDefault();
+    var beast = this.findBeast(e.target.innerHTML);
+    this.setState({
+      popup: true,
+      currentBeast: beast
+    });
+    // console.log(beast);
+  }
+
+  popupClose(e) {
+    e.preventDefault();
+    this.setState({
+      popup: false
     });
   }
 
@@ -111,10 +142,17 @@ class App extends React.Component {
         <ShapesSeen
         availableShapes={this.state.beasts.available}
         seenShapes={this.state.beasts.seen}
+        popupOpen={this.popupOpen}
+        popupClose={this.popupClose}
         />
         <UnseenBeasts
           beasts={this.state.beasts.unseen}
           seenBeast={this.seenBeast}
+        />
+        <Popup
+          popup={this.state.popup}
+          popupClose={this.popupClose}
+          shape={this.state.currentBeast}
         />
       </div>
     );
